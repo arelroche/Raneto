@@ -36,7 +36,7 @@ function route_home (config, raneto) {
 
     // Filter out the image content directory and items with show_on_home == false
     var pageList = remove_image_content_directory(config, 
-      _.chain((req.query.tags == undefined && req.query.article_languge == undefined) ? raneto.getPages('/index') : raneto.getPages_Filtered('/index', req.query.tags, req.query.article_languge))
+      _.chain((req.query.tags == undefined && req.query.article_language == undefined) ? raneto.getPages('/index', req.query.article_language) : raneto.getPages_Filtered('/index', req.query.tags, req.query.article_language))
       .filter(function(page) { return page.show_on_home; })
       .map(function(page) {
         page.files = _.filter(page.files, function(file) { return file.show_on_home; });
