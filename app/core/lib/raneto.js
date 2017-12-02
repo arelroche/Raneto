@@ -57,6 +57,7 @@ var default_config = {
   // If this option is blank pages will be sorted alphabetically
   page_sort_meta: 'sort',
   article_tags: 'article_tags',
+  article_languge: 'article_languge',
   // Should categories be sorted numerically (true) or alphabetically (false)
   // If true category folders need to contain a "sort" file with an integer value
   category_sort: true,
@@ -372,7 +373,8 @@ var Raneto = function () {
 
   }, {
     key: 'getPages_Filtered',
-    value: function getPages_Filtered(activePageSlug, filter_tags) {
+    value: function getPages_Filtered(activePageSlug, filter_tags, article_languge) {
+      console.log("The languge is: " + article_languge);
       // Function to get a filtered page (by article tags)
       var _this2 = this;
 
@@ -380,10 +382,14 @@ var Raneto = function () {
       filter_tags = filter_tags || '';
       var filter_tags_array = filter_tags.split(',');
       var page_sort_meta = this.config.page_sort_meta || '';
-      var article_tags = this.config.article_tags || '';
+      var article_tags = this.config.article_tags || '';    
       var category_sort = this.config.category_sort || false;
-      var files = glob.sync(patch_content_dir(this.config.content_dir) + '**/*');
       var content_dir = path.normalize(patch_content_dir(this.config.content_dir));
+      if(article_languge == "french"){
+        content_dir = content_dir.replace("/content/", "/content-fr/")
+      }
+      var files = glob.sync(patch_content_dir(content_dir) + '**/*');
+
       var filesProcessed = [];
       
       filesProcessed.push({
@@ -409,7 +415,7 @@ var Raneto = function () {
 
           var sort = 0;
           // ignore directories that has an ignore file under it
-          var ignoreFile = patch_content_dir(_this2.config.content_dir) + shortPath + '/ignore';
+          var ignoreFile = patch_content_dir(content_dir) + shortPath + '/ignore';
 
           if (fs.existsSync(ignoreFile) && fs.lstatSync(ignoreFile).isFile()) {
             return true;
@@ -417,21 +423,21 @@ var Raneto = function () {
 
           var dirMetadata = {};
           try {
-            var metaFile = fs.readFileSync(patch_content_dir(_this2.config.content_dir) + shortPath + '/meta');
+            var metaFile = fs.readFileSync(patch_content_dir(content_dir) + shortPath + '/meta');
             dirMetadata = _this2.cleanObjectStrings(yaml.safeLoad(metaFile.toString('utf-8')));
           } catch (e) {
             if (_this2.config.debug) {
-              console.log('No meta file for', patch_content_dir(_this2.config.content_dir) + shortPath);
+              console.log('No meta file for', patch_content_dir(content_dir) + shortPath);
             }
           }
 
           if (category_sort && !dirMetadata.sort) {
             try {
-              var sortFile = fs.readFileSync(patch_content_dir(_this2.config.content_dir) + shortPath + '/sort');
+              var sortFile = fs.readFileSync(patch_content_dir(content_dir) + shortPath + '/sort');
               sort = parseInt(sortFile.toString('utf-8'), 10);
             } catch (e) {
               if (_this2.config.debug) {
-                console.log('No sort file for', patch_content_dir(_this2.config.content_dir) + shortPath);
+                console.log('No sort file for', patch_content_dir(content_dir) + shortPath);
               }
             }
           }
@@ -478,24 +484,50 @@ var Raneto = function () {
                                             // tags set in the metadata
             var showArticleInView;
 
-            if(meta[article_tags] != undefined){
-              if(filter_tags_array[0] == "none"){
-                showArticleInView = true;
-              } else {
-                var containsTag = false;
-                var currentArticleTags = meta[article_tags].split(',');
+            // filter out articles by specific tags
+//if(meta[article_languge] == article_languge){
+//console.log("WE FOUND A MATCH");
+//if(meta[article_tags] != undefined){
+//if(filter_tags_array[0] == "none"){
+//showArticleInView = true;
+//} else {
+//var containsTag = false;
+//var currentArticleTags = meta[article_tags].split(',');
+//
+//for(var i=0; i < filter_tags_array.length; i++){
+//for(var j=0; j < currentArticleTags.length; j ++){
+//if(filter_tags_array[i] == currentArticleTags[j]){
+//showArticleInView = true;
+//}
+//}
+//}
+//}
+//} else {
+//showArticleInView = showArticleAnyways;
+//}
+//}
 
-                for(var i=0; i < filter_tags_array.length; i++){
-                  for(var j=0; j < currentArticleTags.length; j ++){
-                    if(filter_tags_array[i] == currentArticleTags[j]){
-                      showArticleInView = true;
+
+              if(meta[article_tags] != undefined){
+                if(filter_tags_array[0] == "none"){
+                  showArticleInView = true;
+                } else {
+                  var containsTag = false;
+                  var currentArticleTags = meta[article_tags].split(',');
+
+                  for(var i=0; i < filter_tags_array.length; i++){
+                    for(var j=0; j < currentArticleTags.length; j ++){
+                      if(filter_tags_array[i] == currentArticleTags[j]){
+                        showArticleInView = true;
+                      }
                     }
                   }
                 }
+              } else {
+                showArticleInView = showArticleAnyways;
               }
-            } else {
-              showArticleInView = showArticleAnyways;
-            }
+
+
 
             val.files.push({
               slug: slug,
