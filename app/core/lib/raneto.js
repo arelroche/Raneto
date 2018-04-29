@@ -212,10 +212,13 @@ var Raneto = function () {
 
   }, {
     key: 'getPage',
-    value: function getPage(filePath) {
+    value: function getPage(filePath, language) {
       try {
         var file = fs.readFileSync(filePath);
-        var slug = patch_content_dir(filePath).replace(patch_content_dir(this.config.content_dir + '/content-fr/'), '').trim();
+        console.log('We are replacing: ' + this.config.content_dir + 'content-' + language + '/');
+        var slug = patch_content_dir(filePath).replace(patch_content_dir(this.config.content_dir + 'content-' + language + '/'), '').trim();
+        console.log("Slug");
+        console.log(slug);
 
         if (slug.indexOf('index.md') > -1) {
           slug = slug.replace('index.md', '');
@@ -531,16 +534,15 @@ var Raneto = function () {
 
   }, {
     key: 'doSearch',
-    value: function doSearch(query) {
+    value: function doSearch(query, language) {
       var _this3 = this;
 
-      var contentDir = patch_content_dir(path.normalize(this.config.content_dir + '/content-fr/'));
+      var contentDir = patch_content_dir(path.normalize(this.config.content_dir + 'content-' + language + '/'));
       var files = glob.sync(contentDir + '**/*.md');
       var idx = (0, _lunr2.default)(function () {
         this.field('title', { boost: 10 });
         this.field('body');
       });
-
       files.forEach(function (filePath) {
         try {
           var shortPath = filePath.replace(contentDir, '').trim();
@@ -558,12 +560,11 @@ var Raneto = function () {
           }
         }
       });
-
       var results = idx.search(query);
       var searchResults = [];
 
       results.forEach(function (result) {
-        var page = _this3.getPage(_this3.config.content_dir + result.ref);
+        var page = _this3.getPage(_this3.config.content_dir + 'content-' + language + '/' + result.ref, language);
         page.excerpt = page.excerpt.replace(new RegExp('(' + query + ')', 'gim'), '<span class="search-query">$1</span>');
         searchResults.push(page);
       });
