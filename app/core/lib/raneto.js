@@ -215,10 +215,7 @@ var Raneto = function () {
     value: function getPage(filePath, language) {
       try {
         var file = fs.readFileSync(filePath);
-        console.log('We are replacing: ' + this.config.content_dir + 'content-' + language + '/');
         var slug = patch_content_dir(filePath).replace(patch_content_dir(this.config.content_dir + 'content-' + language + '/'), '').trim();
-        console.log("Slug");
-        console.log(slug);
 
         if (slug.indexOf('index.md') > -1) {
           slug = slug.replace('index.md', '');
