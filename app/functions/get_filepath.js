@@ -7,10 +7,12 @@ var sanitize = require('sanitize-filename');
 
 function get_filepath (p, req) {
   var language = 'en';
-  try {
-    language = req.cookies['language'];
-  } catch(err) {
-    console.log(err);
+  if (req){
+    try {
+      language = req.cookies['language'];
+    } catch(err) {
+      console.log(err);
+    }
   }
   
   // Default
