@@ -82,7 +82,7 @@ function route_wildcard (config, raneto) {
 
         }
 
-        var pageList = remove_image_content_directory(config, raneto.getPages(slug));
+        var pageList = remove_image_content_directory(config, raneto.getPages(slug, req.cookies['language']));
 
         var loggedIn = ((config.authentication || config.authentication_for_edit) ? req.session.loggedIn : false);
 

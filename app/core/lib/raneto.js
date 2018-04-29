@@ -251,8 +251,8 @@ var Raneto = function () {
       activePageSlug = activePageSlug || '';
       var page_sort_meta = this.config.page_sort_meta || '';
       var category_sort = this.config.category_sort || false;
-      var files = glob.sync(patch_content_dir(this.config.content_dir + '/content-fr/') + '**/*');
-      var content_dir = path.normalize(patch_content_dir(this.config.content_dir + '/content-fr/'));
+      var files = glob.sync(patch_content_dir(this.config.content_dir + '/content-' + translation + '/') + '**/*');
+      var content_dir = path.normalize(patch_content_dir(this.config.content_dir + '/content-' + translation + '/'));
       var filesProcessed = [];
 
       filesProcessed.push({
