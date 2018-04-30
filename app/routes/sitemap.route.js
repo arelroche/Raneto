@@ -10,7 +10,6 @@ var get_last_modified = require('../functions/get_last_modified.js');
 function route_sitemap(config, raneto) {
   return function (req, res, next) {
 
-    console.log("sitemap route!");
     var hostname = req.headers.host;
     var content_dir = path.normalize(raneto.config.content_dir);
 
