@@ -20,7 +20,7 @@ function route_wildcard (config, raneto) {
     var slug   = req.params[0];
     if (slug === '/') { slug = '/index'; }
 
-    var file_path      = path.normalize(raneto.config.content_dir + slug);
+    var file_path      = path.normalize(raneto.config.content_dir + 'content-' + req.cookies['language'] + slug);
     var file_path_orig = file_path;
 
     // Remove "/edit" suffix
@@ -82,7 +82,7 @@ function route_wildcard (config, raneto) {
 
         }
 
-        var pageList = remove_image_content_directory(config, raneto.getPages(slug));
+        var pageList = remove_image_content_directory(config, raneto.getPages(slug, req.cookies['language']));
 
         var loggedIn = ((config.authentication || config.authentication_for_edit) ? req.session.loggedIn : false);
 
