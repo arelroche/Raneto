@@ -209,6 +209,47 @@
     margin-bottom: 10px;
   }
 
+  .nl-container {
+    padding-left: 0;
+  }
+
+}
+
+.slideshow-container {
+  max-width: 400px; 
+  position: absolute; 
+  height: 100%; 
+  overflow: hidden; 
+  top: 0; 
+  left: 0;
+  display: block;
+}
+
+.mySlides {
+  display:none;
+  height: 100%;
+}
+
+.lang-social-bar {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+.lang-french {
+  display: none;
+}
+
+.lang-english {
+  display: none;
+}
+
+.nl-form-en {
+  display: none;
+}
+
+.nl-form-fr {
+  display: none;
 }
 
 /* general style for the form */
@@ -242,6 +283,12 @@
   margin: 0;
   -webkit-appearance: none;
   -moz-appearance: none;
+}
+.nl-form-row {
+  width: 100%;
+}
+.nl-form-container {
+  width: 520px;
 }
 .nl-form-button {
   border: none;
@@ -278,7 +325,7 @@
 .nl-form select  {
   line-height: inherit;
   display: inline-block;
-  color: #478CDB;
+  color: #B2BB1E;
   cursor: pointer;
   border-bottom: 1px dashed #B2BB1E;
 }
@@ -445,12 +492,12 @@ input:focus::-ms-input-placeholder {
   text-transform: uppercase;
   cursor: pointer;
   position: relative;
-  background: #478CDB;
+  background: #b3ba3f;
   color: white;
   padding: 0 1em;
-  font-size: 70%;
-  font-weight: bold;
-  letter-spacing: 5px;
+  letter-spacing: 2px;
+  border-radius: 32px;
+
 }
 
 .nl-submit:hover,
@@ -493,6 +540,7 @@ input:focus::-ms-input-placeholder {
   padding-top: 130px;
   display: none;
   overflow: scroll;
+  padding-left: 450px;
 }
 
 .view-all-articles-button {
@@ -629,6 +677,18 @@ select#soflow-color {
 @media screen and (min-width: 768px) {
   .input-lg {
     width: 665px !important;
+  }
+}
+
+@media screen and (max-width: 885px) {
+  .slideshow-container {
+    display: none;
+  }
+  .nl-container {
+    padding-left: 0px !important;
+  }
+  .nl-container {
+    text-align: center;
   }
 }
 

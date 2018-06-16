@@ -107,25 +107,32 @@
   {{/pages}}
 </div>
 
-<div class="nl-container demo-1" align="center">
+<div class="nl-container demo-1">
+  <div class="slideshow-container">
+      <img class="mySlides" src="images/img_la.jpg">
+      <img class="mySlides" src="images/img_ny.jpg">
+      <img class="mySlides" src="images/img_chicago.jpg">
+    </div>
   <div class="main clearfix">
-    <button id='to-french'>French</button>
-    <button id='to-english'>English</button>
+    <div class="lang-social-bar">
+      <button id='to-french' class='lang-french'>French</button>
+      <button id='to-english' class='lang-english'>English</button>
+    </div>
     <div>
       <a href="http://www.autismontario.com/">
         <img src="/images/Autism-Ontario-Bilingual-Logo-2016.png" alt="AutismOntario Logo" style="width:300px;height:164px;border:0;">
       </a>
     </div>
-    <form id="nl-form" class="nl-form">
+    <form id="nl-form-en" class="nl-form nl-form-en">
       I am a
-      <select id="nl_tag_1">
+      <select id="nl_tag_1-en">
         <option value="family" selected>FAMILY MEMBER</option>
         <option value="supporter">SUPPORTER</option>
         <option value="profressional">PROFESSIONAL</option>
         <option value="super-hero">PERSON WITH ASD</option>
       </select>
       <br />and I want to
-      <select id="nl_tag_2">
+      <select id="nl_tag_2-en">
         <option value="learn" selected>LEARN</option>
         <option value="volunteer">VOLUNTEER</option>
         <option value="support">FIND SUPPORT</option>
@@ -138,8 +145,33 @@
         <option value="hamilton">Hamilton</option>
       </select>
       -->
-      <div class="nl-overlay"></div>
+      <div class="nl-overlay-en"></div>
     </form>
+    <form id="nl-form-fr" class="nl-form nl-form-fr">
+      Je suis
+      <select id="nl_tag_1-fr">
+        <option value="famille" selected>MEMBRE DE LA FAMILLE</option>
+        <option value="supporter">SUPPORTER</option>
+        <option value="professionnel">PROFESSIONNEL</option>
+        <option value="super-héros">PERSONNE ATTEINTE D'UN TSA</option>
+      </select>
+      <br />et Je veux
+      <select id="nl_tag_2-fr">
+        <option value="apprendre" selected>APPRENDRE</option>
+        <option value="bénévole">BÉNÉVOLE</option>
+        <option value="soutien">TROUVER LE SOUTIEN</option>
+      </select>
+      <!-- Hiding location filter
+      <br />in
+      <select id="nl_tag_3">
+        <option value="toronto" selected>Toronto</option>
+        <option value="oshawa">Oshawa</option>
+        <option value="hamilton">Hamilton</option>
+      </select>
+      -->
+      <div class="nl-overlay-fr"></div>
+    </form>
+
     <div class="nl-submit-wrap">
       <button class="nl-submit nl-form-button">LET'S EXPLORE</button>
     </div>
@@ -228,8 +260,8 @@
       // hook into the submit button
       $(".nl-submit").click(function( event ) {
         event.preventDefault();
-        var tag1 = $("#nl_tag_1").val();
-        var tag2 = $("#nl_tag_2").val();
+        var tag1 = $("#nl_tag_1-" + documentLanguage).val();
+        var tag2 = $("#nl_tag_2-" + documentLanguage).val();
         var tag3 = $("#nl_tag_3").val();
         window.location.href = window.location.origin + window.location.pathname + "?tags=" + tag1 + "," + tag2 + "," + tag3
       });
@@ -237,9 +269,11 @@
 
     $('#to-french').click(function () {
       document.cookie = 'language=fr';
+      location.reload();
     });
     $('#to-english').click(function () {
       document.cookie = 'language=en';
+      location.reload();
     });
   }
 
@@ -255,7 +289,7 @@
 
   function NLForm( el ) {
     this.el = el;
-    this.overlay = this.el.querySelector( '.nl-overlay' );
+    this.overlay = this.el.querySelector( '.nl-overlay-' + documentLanguage );
     this.fields = [];
     this.fldOpen = -1;
     this._init();
@@ -416,5 +450,59 @@
   window.NLForm = NLForm;
 
 } )( window );
-var nlform = new NLForm( document.getElementById( 'nl-form' ) );
+var documentLanguage = 'en';
+if(getCookie('language') == 'en'){
+  // show french switcher
+  documentLanguage = 'en';
+  // show the lang switcher
+  var x = document.getElementsByClassName('lang-french');
+  x[0].style.display = "block";
+  // show the right form
+  var y = document.getElementsByClassName('nl-form-en');
+  y[0].style.display = "block";
+} else {
+  // show english switcher
+  documentLanguage = 'fr';
+  // show the lang switcher
+  var x = document.getElementsByClassName('lang-english');
+  x[0].style.display = "block";
+  // show the right form
+  var y = document.getElementsByClassName('nl-form-fr');
+  y[0].style.display = "block";
+}
+
+var nlform = new NLForm( document.getElementById( 'nl-form-' + documentLanguage ) );
+
+// slideshow javascript
+var myIndex = 0;
+carousel();
+
+function carousel() {
+    var i;
+    var x = document.getElementsByClassName("mySlides");
+    for (i = 0; i < x.length; i++) {
+       x[i].style.display = "none";  
+    }
+    myIndex++;
+    if (myIndex > x.length) {myIndex = 1}    
+    x[myIndex-1].style.display = "block";  
+    setTimeout(carousel, 5000); // Change image every 5 seconds
+}
+
+// get cookie function
+function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
 </script>
