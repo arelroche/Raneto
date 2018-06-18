@@ -43,6 +43,13 @@
     "searchKnowledgeBase": "Rechercher dans la base de connaissance"
   },
 
+  "dropDown": {
+    "family": "MEMBRE DE LA FAMILLE",
+    "supporter": "SUPPORTER",
+    "profressional": "PROFESSIONNEL",
+    "superHero": "PERSONNE ATTEINTE D'UN TSA"
+  },
+
   "login": {
     "login"   : "Connexion",
     "logout"  : "Déconnexion",

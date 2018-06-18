@@ -43,6 +43,13 @@
     "searchKnowledgeBase": "Search the knowledge base"
   },
 
+  "dropDown": {
+    "family": "FAMILY",
+    "supporter": "SUPPORTER",
+    "profressional": "PROFESSIONAL",
+    "superHero": "PERSON WITH ASD"
+  },
+
   "login": {
     "login"   : "Login",
     "logout"  : "Logout",
