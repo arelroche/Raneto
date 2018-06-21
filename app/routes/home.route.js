@@ -53,7 +53,7 @@ function route_home (config, raneto) {
       body_class    : 'page-home',
       meta          : config.home_meta,
       last_modified : get_last_modified(config,config.home_meta,template_filepath),
-      lang          : config.lang,
+      lang          : require('../translations/' + (req.cookies.language || 'en') + '.json'),
       loggedIn      : ((config.authentication || config.authentication_for_edit) ? req.session.loggedIn : false),
       username      : ((config.authentication || config.authentication_for_edit) ? req.session.username : null)
     });
