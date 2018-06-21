@@ -267,6 +267,12 @@
       x[0].style.display = "block";
     }
 
+    // disables the home search button if there is no text entered to search for
+    $('.search-form').find('button[type="submit"]').on('click', function(event){
+      if($('.search-form').find('#home-search').val() == ""){
+        event.preventDefault();
+      }
+    });
 
   }
 
