@@ -44,10 +44,23 @@
   },
 
   "dropDown": {
-    "family": "MEMBRE DE LA FAMILLE",
-    "supporter": "SUPPORTER",
-    "profressional": "PROFESSIONNEL",
-    "superHero": "PERSONNE ATTEINTE D'UN TSA"
+    "title"             : "Je suis",
+    "subTitle"          : "et Je veux",
+    "family"            : "MEMBRE DE LA FAMILLE",
+    "family-tag"        : "famille",
+    "supporter"         : "SUPPORTER",
+    "supporter-tag"     : "supporter",
+    "profressional"     : "PROFESSIONNEL",
+    "profressional-tag" : "professionnel",
+    "superHero"         : "PERSONNE ATTEINTE D'UN TSA",
+    "superHero-tag"     : "super-héros",
+    "learn"             : "APPRENDRE",
+    "learn-tag"         : "apprendre",
+    "volunteer"         : "BÉNÉVOLE",
+    "volunteer-tag"     : "bénévole",
+    "support"           : "TROUVER LE SOUTIEN",
+    "support-tag"       : "soutien",
+    "submit"            : "Explorons"
   },
 
   "login": {

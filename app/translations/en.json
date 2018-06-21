@@ -44,10 +44,23 @@
   },
 
   "dropDown": {
-    "family": "FAMILY",
-    "supporter": "SUPPORTER",
-    "profressional": "PROFESSIONAL",
-    "superHero": "PERSON WITH ASD"
+    "title"             : "I am a",
+    "subTitle"          : "and I want to",
+    "family"            : "FAMILY",
+    "family-tag"        : "family",
+    "supporter"         : "SUPPORTER",
+    "supporter-tag"     : "supporter",
+    "profressional"     : "PROFESSIONAL",
+    "profressional-tag" : "profressional",
+    "superHero"         : "PERSON WITH ASD",
+    "superHero-tag"     : "super-hero",
+    "learn"             : "LEARN",
+    "learn-tag"         : "learn",
+    "volunteer"         : "VOLUNTEER",
+    "volunteer-tag"     : "volunteer",
+    "support"           : "FIND SUPPORT",
+    "support-tag"       : "support",
+    "submit"            : "Let's Explore"
   },
 
   "login": {
