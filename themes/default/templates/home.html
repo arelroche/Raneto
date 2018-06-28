@@ -269,7 +269,8 @@
 
     // disables the home search button if there is no text entered to search for
     $('.search-form').find('button[type="submit"]').on('click', function(event){
-      if($('.search-form').find('#home-search').val() == ""){
+      const searchString = $('.search-form').find('#home-search').val();
+      if(searchString == "" || searchString == " "){
         event.preventDefault();
       }
     });
