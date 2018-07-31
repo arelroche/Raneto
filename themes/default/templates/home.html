@@ -156,6 +156,7 @@
 
 <script>
   var documentLanguage = 'en'; // global default language
+
   function getQueryStringValue (key) {
     return decodeURIComponent(window.location.search.replace(new RegExp("^(?:.*[&\\?]" + encodeURIComponent(key).replace(/[\.\+\*]/g, "\\$&") + "(?:\\=([^&]*))?)?.*$", "i"), "$1"));
   }
@@ -244,6 +245,8 @@
       });
     }
 
+    document.cookie = (typeof document.cookie === 'undefined') ? 'language=en' : document.cookie;
+
     $('#to-french').click(function () {
       document.cookie = 'language=fr';
       location.reload();
@@ -253,17 +256,17 @@
       location.reload();
     });
 
-    if(getCookie('language') == 'en'){
-      // show french switcher
-      documentLanguage = 'en';
-      // show the lang switcher
-      var x = document.getElementsByClassName('lang-french');
-      x[0].style.display = "block";
-    } else {
+    if(getCookie('language') == 'fr'){
       // show english switcher
       documentLanguage = 'fr';
       // show the lang switcher
       var x = document.getElementsByClassName('lang-english');
+      x[0].style.display = "block";
+    } else {
+      // show french switcher
+      documentLanguage = 'en';
+      // show the lang switcher
+      var x = document.getElementsByClassName('lang-french');
       x[0].style.display = "block";
     }
 
@@ -460,11 +463,11 @@ function carousel() {
     var i;
     var x = document.getElementsByClassName("mySlides");
     for (i = 0; i < x.length; i++) {
-       x[i].style.display = "none";  
+       x[i].style.display = "none";
     }
     myIndex++;
-    if (myIndex > x.length) {myIndex = 1}    
-    x[myIndex-1].style.display = "block";  
+    if (myIndex > x.length) {myIndex = 1}
+    x[myIndex-1].style.display = "block";
     setTimeout(carousel, 5000); // Change image every 5 seconds
 }
 
