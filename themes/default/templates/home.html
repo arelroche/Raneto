@@ -14,10 +14,10 @@
           <span>I am a</span><br>
           <div class="styled-select green rounded">
             <select id="tag_group_1">
-              <option value="family" selected>FAMILY MEMBER</option>
-              <option value="supporter">SUPPORTER</option>
-              <option value="profressional">PROFESSIONAL</option>
-              <option value="super-hero">PERSON WITH ASD</option>
+              <option value="family" selected>{{lang.dropDown.family}}</option>
+              <option value="supporter">{{lang.dropDown.supporter}}</option>
+              <option value="profressional">{{lang.dropDown.profressional}}</option>
+              <option value="super-hero">{{lang.dropDown.superHero}}</option>
             </select>
           </div>
         </td>
@@ -107,28 +107,35 @@
   {{/pages}}
 </div>
 
-<div class="nl-container demo-1" align="center">
+<div class="nl-container demo-1">
+  <div class="slideshow-container">
+      <img class="mySlides" src="images/img_la.jpg">
+      <img class="mySlides" src="images/img_ny.jpg">
+      <img class="mySlides" src="images/img_chicago.jpg">
+    </div>
   <div class="main clearfix">
-    <button id='to-french'>French</button>
-    <button id='to-english'>English</button>
+    <div class="lang-social-bar">
+      <button id='to-french' class='lang-french'>French</button>
+      <button id='to-english' class='lang-english'>English</button>
+    </div>
     <div>
       <a href="http://www.autismontario.com/">
         <img src="/images/Autism-Ontario-Bilingual-Logo-2016.png" alt="AutismOntario Logo" style="width:300px;height:164px;border:0;">
       </a>
     </div>
     <form id="nl-form" class="nl-form">
-      I am a
+      {{lang.dropDown.title}}
       <select id="nl_tag_1">
-        <option value="family" selected>FAMILY MEMBER</option>
-        <option value="supporter">SUPPORTER</option>
-        <option value="profressional">PROFESSIONAL</option>
-        <option value="super-hero">PERSON WITH ASD</option>
+        <option value="{{lang.dropDown.family-tag}}" selected>{{lang.dropDown.family}}</option>
+        <option value="{{lang.dropDown.supporter-tag}}">{{lang.dropDown.supporter}}</option>
+        <option value="{{lang.dropDown.profressional-tag}}">{{lang.dropDown.profressional}}</option>
+        <option value="{{lang.dropDown.superHero-tag}}">{{lang.dropDown.superHero}}</option>
       </select>
-      <br />and I want to
+      <br />{{lang.dropDown.subTitle}}
       <select id="nl_tag_2">
-        <option value="learn" selected>LEARN</option>
-        <option value="volunteer">VOLUNTEER</option>
-        <option value="support">FIND SUPPORT</option>
+        <option value="{{lang.dropDown.learn-tag}}" selected>{{lang.dropDown.learn}}</option>
+        <option value="{{lang.dropDown.volunteer-tag}}">{{lang.dropDown.volunteer}}</option>
+        <option value="{{lang.dropDown.support-tag}}">{{lang.dropDown.support}}</option>
       </select>
       <!-- Hiding location filter
       <br />in
@@ -140,13 +147,15 @@
       -->
       <div class="nl-overlay"></div>
     </form>
+
     <div class="nl-submit-wrap">
-      <button class="nl-submit nl-form-button">LET'S EXPLORE</button>
+      <button class="nl-submit nl-form-button">{{lang.dropDown.submit}}</button>
     </div>
   </div>
 </div><!-- /container -->
 
 <script>
+  var documentLanguage = 'en'; // global default language
   function getQueryStringValue (key) {
     return decodeURIComponent(window.location.search.replace(new RegExp("^(?:.*[&\\?]" + encodeURIComponent(key).replace(/[\.\+\*]/g, "\\$&") + "(?:\\=([^&]*))?)?.*$", "i"), "$1"));
   }
@@ -237,10 +246,35 @@
 
     $('#to-french').click(function () {
       document.cookie = 'language=fr';
+      location.reload();
     });
     $('#to-english').click(function () {
       document.cookie = 'language=en';
+      location.reload();
     });
+
+    if(getCookie('language') == 'en'){
+      // show french switcher
+      documentLanguage = 'en';
+      // show the lang switcher
+      var x = document.getElementsByClassName('lang-french');
+      x[0].style.display = "block";
+    } else {
+      // show english switcher
+      documentLanguage = 'fr';
+      // show the lang switcher
+      var x = document.getElementsByClassName('lang-english');
+      x[0].style.display = "block";
+    }
+
+    // disables the home search button if there is no text entered to search for
+    $('.search-form').find('button[type="submit"]').on('click', function(event){
+      const searchString = $('.search-form').find('#home-search').val();
+      if(searchString == "" || searchString == " "){
+        event.preventDefault();
+      }
+    });
+
   }
 
 ;( function( window ) {
@@ -417,4 +451,37 @@
 
 } )( window );
 var nlform = new NLForm( document.getElementById( 'nl-form' ) );
+
+// slideshow javascript
+var myIndex = 0;
+carousel();
+
+function carousel() {
+    var i;
+    var x = document.getElementsByClassName("mySlides");
+    for (i = 0; i < x.length; i++) {
+       x[i].style.display = "none";  
+    }
+    myIndex++;
+    if (myIndex > x.length) {myIndex = 1}    
+    x[myIndex-1].style.display = "block";  
+    setTimeout(carousel, 5000); // Change image every 5 seconds
+}
+
+// get cookie function
+function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
 </script>
