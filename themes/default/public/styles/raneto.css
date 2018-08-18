@@ -232,16 +232,47 @@
 
 .lang-social-bar {
   position: absolute;
-  right: 0;
-  bottom: 0;
+  right: 50px;
+  bottom: 50px;
+}
+
+.lang-social-bar a {
+  cursor: pointer;
+  color: #333;
+}
+
+.lang-social-bar .social-icon {
+  float: right;
+  font-size: 24px;
+  padding-left: 8px;
+}
+
+.lang-social-bar button {
+  background: #b3ba3f;
+  border: 0;
+  padding: 11px 15px 10px 15px;
+  border-radius: 32px;
+  color:  white;
+}
+
+.lang-social-bar button:hover {
+  background: #dae611;
 }
 
 .lang-french {
   display: none;
+  float: left;
+  padding-right: 2px;
+  padding-top: 1px;
+  font-size: 16px;
 }
 
 .lang-english {
   display: none;
+  float: right;
+  padding-right: 2px;
+  padding-top: 1px;
+  font-size: 16px;
 }
 
 .nl-form-en {
@@ -332,7 +363,7 @@
 
 a:hover
 {
-    color: #026288;
+    color: #dae611;
     text-decoration: none;
 }
 
@@ -340,7 +371,7 @@ a:hover
 .nl-field ul {
   position: absolute;
   visibility: hidden;
-  background: #478CDB;
+  background: #b3ba3f;
   left: -0.5em;
   top: 50%;
   font-size: 80%;
@@ -376,7 +407,7 @@ a:hover
 }
 
 .nl-dd ul li.nl-dd-checked {
-  color: #026288;
+  color: #dae611;
 }
 
 .no-touch .nl-dd ul li:hover {
@@ -502,7 +533,7 @@ input:focus::-ms-input-placeholder {
 
 .nl-submit:hover,
 .nl-submit:active {
-  background: #026288;
+  background: #dae611;
 }
 
 /* overlay becomes visible when a field is opened */
