@@ -269,7 +269,7 @@
 
 .lang-english {
   display: none;
-  float: right;
+  float: left;
   padding-right: 2px;
   padding-top: 1px;
   font-size: 16px;
@@ -303,6 +303,23 @@
 .contact-donate-bar button:hover {
   background: #b3ba3f;
   color: #fff;
+}
+
+.webinar-workshop-table {
+  margin-top: 20px;
+  margin-left: 20px;
+}
+
+.webinar-workshop-table img {
+  margin-bottom: 2px;
+}
+
+.webinar-workshop-table td {
+  padding-right: 20px;
+}
+
+.webinar-workshop-table a {
+  color: #333;
 }
 
 .nl-form-en {
