@@ -769,9 +769,26 @@ select#soflow-color {
   }
   .nl-container {
     padding-left: 0px !important;
+    padding-top: 60px;
   }
   .nl-container {
     text-align: center;
+  }
+  .webinar-workshop-table {
+    width: 100%;
+  }
+  .lang-social-bar {
+    position: initial;
+  }
+  .social-icon {
+    float: none !important;
+    padding: 0 !important;
+  }
+  .lang-french {
+    float: none;
+  }
+  .lang-english {
+    float: none;
   }
 }
 
