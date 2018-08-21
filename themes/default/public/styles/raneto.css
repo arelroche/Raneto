@@ -1,6 +1,11 @@
+:root {
+    --primary-color: #b3ba3f; 
+    --secondary-color: #dae611;
+}
+
 .header {
   color: #CCC;
-  background: #b3ba3f;
+  background: var(--primary-color);
 }
 
 .header .container-fluid {
@@ -248,7 +253,7 @@
 }
 
 .lang-social-bar button {
-  background: #b3ba3f;
+  background: var(--primary-color);
   border: 0;
   padding: 11px 15px 10px 15px;
   border-radius: 32px;
@@ -256,7 +261,7 @@
 }
 
 .lang-social-bar button:hover {
-  background: #dae611;
+  background: var(--secondary-color);
 }
 
 .lang-french {
@@ -283,11 +288,11 @@
 
 .contact-donate-bar button {
   background: #fff;
-  border-color: #b3ba3f;
+  border-color: var(--primary-color);
   border-width: 1px;
   border-radius: 32px;
   padding: 10px 20px 10px 20px;
-  color: #b3ba3f;
+  color: var(--primary-color);
 }
 
 .contact-donate-bar .toll-free {
@@ -296,12 +301,12 @@
 }
 
 .contact-donate-bar .phone-number {
-  color: #b3ba3f;
+  color: var(--primary-color);
   margin-right: 14px;
 }
 
 .contact-donate-bar button:hover {
-  background: #b3ba3f;
+  background: var(--primary-color);
   color: #fff;
 }
 
@@ -410,7 +415,7 @@
 
 a:hover
 {
-    color: #dae611;
+    color: var(--secondary-color);
     text-decoration: none;
 }
 
@@ -418,7 +423,7 @@ a:hover
 .nl-field ul {
   position: absolute;
   visibility: hidden;
-  background: #b3ba3f;
+  background: var(--primary-color);
   left: -0.5em;
   top: 50%;
   font-size: 80%;
@@ -454,7 +459,7 @@ a:hover
 }
 
 .nl-dd ul li.nl-dd-checked {
-  color: #dae611;
+  color: var(--secondary-color);
 }
 
 .no-touch .nl-dd ul li:hover {
@@ -570,7 +575,7 @@ input:focus::-ms-input-placeholder {
   text-transform: uppercase;
   cursor: pointer;
   position: relative;
-  background: #b3ba3f;
+  background: var(--primary-color);
   color: white;
   padding: 0 1em;
   letter-spacing: 2px;
@@ -580,7 +585,7 @@ input:focus::-ms-input-placeholder {
 
 .nl-submit:hover,
 .nl-submit:active {
-  background: #dae611;
+  background: var(--secondary-color);
 }
 
 /* overlay becomes visible when a field is opened */
@@ -624,7 +629,7 @@ input:focus::-ms-input-placeholder {
 .view-all-articles-button {
   margin-top: 15px;
   border: 0;
-  background: #b3ba3f;
+  background: var(--primary-color);
   border-radius: 25px;
   color: #fff;
   padding: 5px 10px 5px 10px;
@@ -686,7 +691,7 @@ input:focus::-ms-input-placeholder {
 
 /* -------------------- Colors: Background */
 .slate   { background-color: #ddd; }
-.green   { background-color: #b3ba3f; }
+.green   { background-color: var(--primary-color); }
 .blue    { background-color: #3b8ec2; }
 .yellow  { background-color: #eec111; }
 .black   { background-color: #000; }
@@ -771,7 +776,7 @@ select#soflow-color {
 }
 
 .btn-lg {
-  background-color: #b3ba3f !important;
+  background-color: var(--primary-color) !important;
   border-color: #9da241 !important;
 }
 
